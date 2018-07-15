@@ -1,0 +1,87 @@
+* Check VIP State - If not VIP do not enter to VIP function
+* project goal status - implement the new <meter> tag
+* login - implement login with google								-- DONE
+* Adjust (Update) Subscribe icon if user subscribed\unsubscribed
+* Adjust (Update) Green icon for Positive vote/Red icon for NEgative vote
+* Create Project - Producer
+* Edit Profile (Update) - Producer
+* Delete Profile - Producer
+* View Producer Profile
+
+* Edit Profile (Update) - Consumer
+* Delete Profile - Consumer
+* View Consumer Profile by id
+
+* View Project Profile By ID
+* View Projects list by Owner
+* View Projects list by category
+* View Projects list by votes
+* Edit Project (Updates) - By Owner (Producer ID)
+* Delete Project (Updates) - By Owner (Producer ID)
+
+-------------------------------------------
+<ConsumerList> 
+	<Consumer>
+		//for all projects, projects by id, projects by category, projects by votes, projects by producer
+		<ProjectList> 
+			<Project>
+			</Project>
+		</ProjectList>
+		
+		//producer list to view all selected producer's projects
+		<ProducerList> 
+			<Producer>
+			</Producer>
+		</ProducerList>
+		
+		//access and edit user profile
+		<UserProfile>
+		</UserProfile>
+	</Consumer>
+</ConsumerList>
+-------------------------------------------
+<ProducerList> 
+	<Producer>
+		//for all producers projects
+		<ProjectList> 
+			<Project>
+			</Project>
+		</ProjectList>
+		
+		//for subscribers, positive votes, negative votes
+		<ConsumerList>
+			<Consumer>
+			</Consumer>
+		</ConsumerList>
+
+		//access and edit user profile
+		<UserProfile>
+		</UserProfile>		
+	</Producer>
+</ProducerList>
+-------------------------------------------
+//producer, consumer
+<ProjectList> 
+	<Project>
+	</Project>
+</ProjectList>
+-------------------------------------------
+//producer, consumer
+<UserProfile>
+</UserProfile>
+-------------------------------------------
+//producer - edit\view\delete details, consumer - view details
+<ProjectProfile>
+</ProjectProfile>
+-------------------------------------------
+//will contain all logged in details - try to use from index.js before implementation (Login component)
+<LoginDetails>
+</LoginDetails>
+-------------------------------------------
+
+
+gmail.email -> getAllproducers -> find with email -> allProducerData -> show to user
+
+
+Google Login Guide: 
+https://medium.com/@alexanderleon/implement-social-authentication-with-react-restful-api-9b44f4714fa

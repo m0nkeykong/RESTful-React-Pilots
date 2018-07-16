@@ -2,6 +2,7 @@
   "name": "pilots_react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://pilotsapp.firebaseapp.com/",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
@@ -9,15 +10,14 @@
     "express": "^4.16.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-fontawesome": "^1.6.1",
     "react-google-login": "^3.2.1",
     "react-google-login-component": "^0.9.3",
     "react-icons": "^2.2.7",
-    "react-native-google-image-search": "^0.1.0",
     "react-notifications": "^1.4.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "react-spinners": "^0.3.2"
+    "react-spinners": "^0.3.2",
+    "homepage": "https://pilotsapp.firebaseapp.com/"
   },
   "scripts": {
     "start": "react-scripts start",

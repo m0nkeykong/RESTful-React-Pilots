@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import MdKeyboardArrowLeft from 'react-icons/lib/md/keyboard-arrow-left';
 
-class ProducerHeader extends Component{
+class ConsumerHeader extends Component{
     constructor(props){
         super(props)
 
@@ -40,7 +40,7 @@ class ProducerHeader extends Component{
         textDecoration: "none",
         color: "white",
         fontFamily: "ABeeZee, sans-serif",
-        paddingRight: "24px",
+        paddingRight: "15px",
         paddingTop: "15px"        
     }
 
@@ -57,13 +57,16 @@ class ProducerHeader extends Component{
         return(
             <div style={this.header}>
             <MdKeyboardArrowLeft onClick={this.reload}> </MdKeyboardArrowLeft>
-                <NavLink style={this.NavLink} exact to='/ProducerHome' activeStyle={this.active}>  {/*navlink to main producer page*/}
+                <NavLink style={this.NavLink} exact to='/ConsumerHome' activeStyle={this.active}>
                     Home
                 </NavLink>
-                <NavLink style={this.NavLink}exact to='/ProducerProfile' activeStyle={this.active}> {/*navlink to producer profile*/}
+                <NavLink style={this.NavLink}exact to='/ConsumerProfile' activeStyle={this.active}>
                     Profile
                 </NavLink>
-                <NavLink style={this.NavLink} exact to='/' activeStyle={this.active}> {/*navlink to logout from use*/}
+                <NavLink style={this.NavLink} exact to='/ConsumerHome/MyActivity' activeStyle={this.active}>
+                   Activity
+                </NavLink>
+                <NavLink style={this.NavLink} exact to='/' activeStyle={this.active}>
                     <p onClick={this.logout}>Logout</p>
                 </NavLink>
             </div>
@@ -71,4 +74,4 @@ class ProducerHeader extends Component{
     }
 }
 
-export default ProducerHeader;
+export default ConsumerHeader;

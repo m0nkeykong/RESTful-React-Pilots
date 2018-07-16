@@ -13,11 +13,11 @@ class ProjectList extends Component {
 
     render() {
         return (
-            <div className="row" style={{alignContent: 'center'}}>
+            <div className="row" style={{margin: '0 auto'}}>
                 {this.state.projects.map((proj) => {
                     return (
                         <div className="col" index={proj._id} key={proj._id} >
-                        <NavLink exact to='/EditProjectProfile/' style={{ textDecoration: 'none' }} >
+                        <NavLink exact to={(JSON.parse(sessionStorage.getItem('userType')) === 'consumer') ? '/ProjectProfile/' : '/EditProjectProfile/'} style={{ textDecoration: 'none' }} >
                             <Project project={proj} id={proj._id} key={proj._id} index={proj._id}>
                             </Project>
                         </NavLink>

@@ -18,7 +18,7 @@ class Login extends Component {
     navigate() {
         const query = ['consumer', 'producer'];
         query.map((query) => {
-            console.log('Fetching Docs');
+            console.log('Fetching Docs',query);
             let user = JSON.parse(sessionStorage.getItem('userDetails'));
             console.log('for user: ' + user.email);
             const url = `https://pilotsapp.herokuapp.com/${query}`;
@@ -27,8 +27,9 @@ class Login extends Component {
             fetch(url).then((res) => {
                 return res.json();
             }).then((data) => {
+                console.log(data);
                 data.map((doc) => {
-                    if (doc.email == user.email) {
+                    if (doc.email === user.email) {
                         console.log('found a match!');
                         sessionStorage.setItem('userType', JSON.stringify(query));
                         sessionStorage.setItem('userPilotsDetails', JSON.stringify(doc));
@@ -41,14 +42,17 @@ class Login extends Component {
                 }) 
             }).then(() => {
                 sleep(500).then(() => {
-                    (JSON.parse(sessionStorage.getItem('userType')) == 'consumer') ? this.props.history.push('/ConsumerHome') : (JSON.parse(sessionStorage.getItem('userType')) == 'producer') ? this.props.history.push('/ProducerHome') : this.props.history.push('/register')
+                    console.log(JSON.parse(sessionStorage.getItem('userType')));
+                    (JSON.parse(sessionStorage.getItem('userType')) === 'consumer') ? this.props.history.push('/ConsumerHome') : (JSON.parse(sessionStorage.getItem('userType')) === 'producer') ? this.props.history.push('/ProducerHome') : this.props.history.push('/register')
                 })
             })
         });
     }
 
     loginSuccess() {
+        console.log("123456");
         sessionStorage.setItem('userDetails', JSON.stringify(this.state.userDetails.profileObj));
+        console.log("SFADSFASFSAGSDGDFGSDFGDSFGSDGDSHGFXHFDGHDSFFGDSG");
         this.navigate();
     }
 
@@ -59,14 +63,11 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col">
-                    </div>
-                    <div className="col order-12">
-                    </div>
-                    <div className="col order-1">
-                    <GoogleLogin style={google}
+            <div >
+                <div style={{backgroundImage: `url(./images/logo.JPG)`, backgroundSize: 'cover', margin: '0 auto', width: '250px', height: '250px', marginTop: '130px'}}>
+                </div><p style={{marginTop: '50px'}}></p>
+                    <div className="d-flex justify-content-center">
+                    <GoogleLogin style={{backgroundColor: "#DD4B39"}}
                             clientId={'27160300776-vrr4hvulicl4e83njgaj6dhbgpbrs3to.apps.googleusercontent.com'}
                             buttonText="GOOGLE ME"
                             onSuccess={this.responseGoogle}
@@ -76,7 +77,6 @@ class Login extends Component {
                         </button>
                     </GoogleLogin>
                     </div>
-                </div>
             </div>
         )
     }

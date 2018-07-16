@@ -47,20 +47,7 @@ class ProjectProfile extends Component {
                 console.log(error);
             });
     }
-
-    // delete(e){
-    //     e.preventDefault()
-    //     axios.delete('https://pilotsapp.herokuapp.com/project/deleteProject/' + this.state.project._id)
-    //     .then(response => {
-    //         console.log(response);
-    //         NotificationManager.warning(`'${this.state.project.title}' has been deleted successfully`, '', 3000);
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     });
-
-    //     this.props.history.push('/ProducerHome')
-    // }
+    
     // Handle subscribe event
     subscribe(){
         axios.put('https://pilotsapp.herokuapp.com/consumer/subscribe/' + JSON.parse(sessionStorage.getItem("userPilotsDetails"))._id, {
@@ -100,41 +87,39 @@ class ProjectProfile extends Component {
     }
 
     // Handle positive vote event
-    positiveVote(){
-        axios.put('https://pilotsapp.herokuapp.com/consumer/voteProject/' + JSON.parse(sessionStorage.getItem("userPilotsDetails"))._id + '/1', {
-            projId: sessionStorage.getItem('projectID')
-        }).then(response => {
-            this.fetchProject();
-            console.log(response);
-            NotificationManager.success('You voted for ' + this.state.project.title + ' project.', 'Notice', 3000);
-        })
-        .catch(error => {
-            console.log(error);
-            //NotificationManager.error('Already voted for ' + this.state.project.title + ' project.', 'Error', 3000);
-        }).then(() => {window.location.reload();})
+    positiveVote(e){
+        e.preventDefault()
 
-        this.setState({
-            loading: false
-        })
+        fetch('https://pilotsapp.herokuapp.com/consumer/voteProject/' + JSON.parse(sessionStorage.getItem('userPilotsDetails'))._id + '/1', {
+            method: 'PUT',
+            credentials: "same-origin",
+            headers:{
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({ projId: this.state.project._id })
+        }).then((response) => {
+            console.log(response.data),
+            NotificationManager.success('You voted for ' + this.state.project.title + 'project', 'Notice', 3000)
+            this.props.history.push('/ProjectProfile')
+            });
     }
 
     // Handle the negative vote event
-    negativeVote(){
-        axios.put('https://pilotsapp.herokuapp.com/consumer/voteProject/' + JSON.parse(sessionStorage.getItem("userPilotsDetails"))._id + '/0', {
-            projId: sessionStorage.getItem('projectID')
-        }).then(response => {
-            this.fetchProject();
-            console.log(response);
-            NotificationManager.error('You voted against ' + this.state.project.title + ' project.', 'Notice', 3000);
-        })
-        .catch(error => {
-            console.log(error);
-            //NotificationManager.error('Already voted for ' + this.state.project.title + ' project.', 'Error', 3000);
-        }).then(() => {window.location.reload();})
+    negativeVote(e){
+        e.preventDefault()
 
-        this.setState({
-            loading: false
-        })
+        fetch('https://pilotsapp.herokuapp.com/consumer/voteProject/' + JSON.parse(sessionStorage.getItem('userPilotsDetails'))._id + '/0', {
+            method: 'PUT',
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({ projId: this.state.project._id })
+        }).then((response) => {
+            console.log(response.data),
+                NotificationManager.error('You voted against ' + this.state.project.title + 'project', 'Notice', 3000)
+            this.props.history.push('/ProjectProfile')
+        });
     }
 
     // Showing the project details

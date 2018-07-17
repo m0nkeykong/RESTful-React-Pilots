@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import google from './Login.css'
 
-function sleep(time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-}
-
 class Login extends Component {
     constructor(props) {
         super(props)
@@ -41,10 +37,8 @@ class Login extends Component {
                     }
                 }) 
             }).then(() => {
-                sleep(500).then(() => {
                     console.log(JSON.parse(sessionStorage.getItem('userType')));
                     (JSON.parse(sessionStorage.getItem('userType')) === 'consumer') ? this.props.history.push('/ConsumerHome') : (JSON.parse(sessionStorage.getItem('userType')) === 'producer') ? this.props.history.push('/ProducerHome') : this.props.history.push('/register')
-                })
             })
         });
     }
